@@ -1,0 +1,157 @@
+/* General Styles */
+body {
+    background-color: #1b1f24; /* Dark background */
+    color: #e1e1e1; /* Light text color for readability */
+    font-family: 'Courier New', Courier, monospace; /* Tech-inspired font */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #00ff99; /* Neon-like green for headings */
+    text-shadow: 0 0 5px rgba(0, 255, 153, 0.8); /* Glow effect */
+}
+
+.campaign {
+    color: red;
+   
+}
+
+.query-id {
+    color: black;
+}
+
+a {
+    color: #00bfff; /* Neon-like blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00ff99; /* Hover effect with green */
+    text-shadow: 0 0 8px rgba(0, 255, 153, 1); /* Glow effect on hover */
+}
+
+input[type="text"],
+textarea,
+select {
+    background-color: #333; /* Darker input background */
+    color: #e1e1e1;
+    border: 2px solid #00ff99; /* Neon border */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+input[type="submit"],
+button {
+    background-color: #00ff99;
+    color: #1b1f24;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #00bfff;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 1);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2a2d35; /* Slightly lighter than the background */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1); /* Soft glow shadow */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #3a3f47; /* Subtle border */
+}
+
+th {
+    background-color: #00bfff; /* Blue headers */
+    color: #1b1f24;
+}
+
+td {
+    background-color: #333; /* Darker cell background */
+}
+
+td a {
+    color: #00ff99; /* Link color within table */
+}
+
+td a:hover {
+    text-shadow: 0 0 5px rgba(0, 255, 153, 1); /* Glow effect */
+}
+
+/* Buttons in Table */
+.delete-btn,
+.delete-all-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover,
+.delete-all-btn:hover {
+    background-color: #e60000;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8); /* Red glow on hover */
+}
+
+/* Forms */
+form {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #2a2d35;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+label {
+    color: #00ff99;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Query Box */
+.query-box {
+    background-color: #2a2d35;
+    padding: 15px;
+    border-left: 5px solid #00ff99; /* Left neon border for emphasis */
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Copy Button */
+.copy-btn {
+    background-color: #00bfff;
+    color: #1b1f24;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+    background-color: #00ff99;
+    color: #1b1f24;
+    text-shadow: 0 0 5px rgba(0, 255, 153, 1); /* Glow effect */
+}
+
+
