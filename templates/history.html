@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des Exécutions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .copy-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .delete-all-btn {
+            background-color: #c0392b;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+    <script>
+        // JavaScript function to filter the table by campaign name
+        function filterTable() {
+            let input = document.getElementById('campaignSearch');
+            let filter = input.value.toLowerCase();
+            let table = document.getElementById('historyTable');
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td')[3];  // Column index for "Nom de la Campagne"
+                if (td) {
+                    let textValue = td.textContent || td.innerText;
+                    if (textValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                    } else {
+                        tr[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        // Function to copy query to clipboard
+        function copyQuery(queryId) {
+            var queryText = document.getElementById(queryId);
+            queryText.select();
+            document.execCommand("copy");
+            alert("Requête copiée: " + queryText.value);
+        }
+    </script>
+</head>
+<body>
+    <h1>Historique des Exécutions</h1>
+    <a href="/">
+        <button>Home</button>
+    </a>
+
+    <table id="historyTable">
+        <thead>
+            <tr>
+                <th>ID de l'Exécution</th>
+                <th>URL du Rapport</th>
+                <th>ID de la Requête</th>
+                <th>Nom de la Campagne
+                    <input type="text" id="campaignSearch" onkeyup="filterTable()" placeholder="Rechercher une campagne...">
+                </th>
+                <th>Catégorie</th>
+                <th>Requête Exécutée</th>
+                <th>Date et Heure d'Exécution</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for execution in executions %}
+            <tr>
+                <td>{{ execution.id }}</td>
+                <td><a href="{{ execution.report_url }}" target="_blank">{{ execution.report_url }}</a></td>
+                <td>{{ execution.query_id }}</td>
+                <td>{{ execution.campaign_title }}</td>
+                <td>{{ execution.category }}</td>
+                <td>
+                    <textarea id="query_{{ execution.query_id }}" rows="3" cols="50" style="height: 224px; width: 960px;" readonly>{{ execution.final_query }}</textarea><br>
+                    <button class="copy-btn" onclick="copyQuery('query_{{ execution.query_id }}')">Copier</button>
+                </td>
+                <td>{{ execution.execution_time }}</td>
+                <td>
+                    <!-- Bouton pour supprimer une exécution spécifique -->
+                    <form action="/delete-execution/{{ execution.id }}" method="POST" style="display:inline;">
+                        <button class="delete-btn" type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
