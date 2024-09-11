@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Requêtes Stockées</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Liste des Requêtes Stockées</h1>
+    <a href="/">
+        <button>Home</button>
+    </a>
+    <ul>
+        {% for query in queries %}
+        <li>ID: {{ query.id }} | Requête: {{ query.query }} | Tag: {{ query.tag }} | Type: {{ query.query_type }}  | Catégorie: {{ query.category }} 
+            <a href="{{ url_for('update_query', query_id=query.id) }}">Modifier</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+     <!-- Button to export queries as JSON -->
+     <a href="{{ url_for('export_queries') }}">
+        <button>Export Queries as JSON</button>
+    </a>
+
+    <a href="{{ url_for('import_queries') }}">
+        <button>Import Queries from JSON</button>
+    </a>
+</body>
+</html>
