@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Queries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Import Queries from JSON</h1>
+
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Form for uploading JSON file -->
+    <form action="/import-queries" method="POST" enctype="multipart/form-data">
+        <label for="json_file">Upload JSON File:</label><br>
+        <input type="file" name="json_file" id="json_file" accept=".json" required><br><br>
+        <input type="submit" value="Import">
+    </form>
+
+    <a href="/queries">Back to Queries List</a>
+</body>
+</html>
