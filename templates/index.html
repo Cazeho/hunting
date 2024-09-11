@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Threat hunting Query builder</h1>
+    <ul>
+        <li><a href="/list-reports">List de tous les rapports #StopRansomware</a></li>
+        <li><a href="/store-query">Stocker une Nouvelle Requête</a></li>
+        <li><a href="/queries">Lister les Requêtes Stockées</a></li>
+        <li><a href="/execute-query">Exécuter une Requête à partir d'un Rapport</a></li>
+        <li><a href="/history">Afficher l'Historique des Exécutions</a></li>
+    </ul>
+</body>
+</html>
