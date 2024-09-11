@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exécuter une Requête</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .query-box {
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .copy-btn {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exécuter une Requête</h1>
+    <a href="/">
+        <button>Home</button>
+    </a>
+    <form action="/execute-query" method="POST">
+        <label for="url">URL du Rapport :</label><br>
+        <input type="text" id="url" name="url" required><br><br>
+
+        <input type="submit" value="Exécuter la Requête">
+    </form>
+
+    {% if report_url %}
+    <h2>Lien du Rapport Soumis</h2>
+    <p><a href="{{ report_url }}" target="_blank">{{ report_url }}</a></p>
+    {% endif %}
+
+    {% if campaign_title %}
+    <h3 class="campaign">Nom de la Campagne : {{ campaign_title }}</h3> <!-- Affichage du titre extrait -->
+    {% endif %}
+
+    {% if executed_queries %}
+    <h2>Requêtes Exécutées :</h2>
+    <ul>
+        {% for query in executed_queries %}
+            <li class="query-box">
+                <p class="query-id">ID de la Requête: {{ query.query_id }}</p> <br>
+                <textarea id="query_{{ query.query_id }}" rows="3" cols="50" style="height: 224px; width: 960px;" readonly>{{ query.final_query }}</textarea><br>
+                <button class="copy-btn" onclick="copyQuery('query_{{ query.query_id }}')">Copier</button>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <script>
+        function copyQuery(queryId) {
+            var queryText = document.getElementById(queryId);
+            queryText.select();
+            document.execCommand("copy");
+            alert("Requête copiée: " + queryText.value);
+        }
+    </script>
+</body>
+</html>
