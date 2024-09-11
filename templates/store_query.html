@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocker une Requête</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Stocker une Nouvelle Requête</h1>
+    <a href="/">
+        <button>Home</button>
+    </a>
+    <form action="/store-query" method="POST">
+        <label for="query">Requête :</label><br>
+        <textarea id="query" name="query" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="tag">Tag :</label><br>
+        <input type="text" id="tag" name="tag" required><br><br>
+
+        <label for="query_type">Type de Requête :</label><br>
+        <select id="query_type" name="query_type" required>
+            <option value="domain">Domaine</option>
+            <option value="hash">Hash</option>
+            <option value="filename">Nom de Fichier</option>
+        </select><br><br>
+
+        <label for="category">Catégorie :</label><br>
+        <select id="category" name="category" required>
+            <option value="xql">XQL</option>
+            <option value="splunk">Splunk</option>
+        </select><br><br>
+
+        <input type="submit" value="Soumettre la Requête">
+    </form>
+</body>
+</html>
